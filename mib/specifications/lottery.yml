@@ -1,0 +1,49 @@
+openapi: "3.0.1"
+info:
+  title: Lottery Service API
+  description: Lottery Microservice of Message in a Bottle Application
+  version: "0.1"
+
+servers:
+  - url: /
+
+paths:
+  /lottery:
+    post:
+      summary: Add a new lottery play
+      tags:
+        - Lottery
+      operationId: mib.resources.lottery.create_lottery_play
+      requestBody:
+        description: Create a new lottery play inside microservice app
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Lottery'
+      responses:
+        201:
+          description: Created
+        200:
+          description: Error
+        default:
+          description: Error during creation of the lottery play
+
+      
+components:
+  schemas:
+    Lottery:
+      required:
+        - id
+        - lottery_number
+      type: object
+      properties:
+        id:
+          type: integer
+          description: user's id
+          example: 1
+        lottery_number:
+          type: integer
+          description: Number choosen by user
+          example: 45
+        
