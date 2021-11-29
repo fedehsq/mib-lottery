@@ -11,12 +11,12 @@ class Lottery(db.Model):
     SERIALIZE_LIST = ['id', 'lottery_number']
 
     # All fields of lottery
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    id = db.Column(db.Integer, primary_key = True)
     lottery_number = db.Column(db.Integer, default = 0)
 
     def __init__(self, *args, **kw):
         super(Lottery, self).__init__(*args, **kw)
-        self.authenticated = False
+        self.lottery_number = 0
 
     def set_number(self, lottery_number):
         self.lottery_number = lottery_number

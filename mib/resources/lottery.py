@@ -8,21 +8,43 @@ def create_lottery_play():
     id = post_data.get('id')
     lottery_number = post_data.get('lottery_number')
 
+    check = LotteryManager.retrieve_by_id(id)
     lottery_play = Lottery()
 
     lottery_play.id = id
     lottery_play.set_number(lottery_number)
 
-    LotteryManager.create_lottery_play(lottery_play)
+    if check is None: 
+        #create a new entry in the table
 
-    response_object = {
-        'lottery': lottery_play.serialize(),
-        'status': 'success',
-        'message': 'Successfully play',
-    }
+        LotteryManager.create_lottery_play(lottery_play)
 
-    return jsonify(response_object), 201
+        response_object = {
+            'lottery': lottery_play.serialize(),
+            'status': 'success',
+            'message': 'Successfully play',
+        }
 
+        return jsonify(response_object), 201
+    
+    else:
+        #update record
+        LotteryManager.update_lottery_play(lottery_play)
+        response_object = {
+            'lottery': lottery_play.serialize(),
+            'status': 'success',
+            'message': 'Successfully updated play',
+        }
+        return jsonify(response_object), 201
+
+def check_play(user_id):
+    check = LotteryManager.retrieve_by_id(user_id)
+    print(check)
+    if check is None:
+        response = {'status': 'Lottery_play not present'}
+        return jsonify(response), 404
+    else:
+        return jsonify(check.serialize()), 200
 '''
 
 def get_user(user_id):

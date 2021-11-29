@@ -29,6 +29,28 @@ paths:
         default:
           description: Error during creation of the lottery play
 
+  /lottery/exist/<user_id>:
+    get:
+      summary: Check if user already played this month
+      tags:
+        - Lottery
+      operationId: mib.resources.lottery.check_play
+      parameters:
+        - name: user_id
+          description: User Unique ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: exist
+        404:
+          description: play not found
+        default:
+          description:  Error during search
+
       
 components:
   schemas:
