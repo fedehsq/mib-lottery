@@ -7,9 +7,9 @@ LABEL version="1.0"
 LABEL description="Message in a Bottle User Microservice"
 
 # creating the environment
-COPY . /app
+COPY . /mib-lottery
 # setting the workdir
-WORKDIR /app
+WORKDIR /mib-lottery
 
 # installing all requirements
 RUN ["pip", "install", "-r", "requirements.prod.txt"]

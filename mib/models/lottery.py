@@ -1,4 +1,5 @@
 from mib import db
+from flask_sqlalchemy import SQLAlchemy
 
 
 class Lottery(db.Model):
@@ -16,7 +17,6 @@ class Lottery(db.Model):
 
     def __init__(self, *args, **kw):
         super(Lottery, self).__init__(*args, **kw)
-        self.lottery_number = 0
 
     def set_number(self, lottery_number):
         self.lottery_number = lottery_number
