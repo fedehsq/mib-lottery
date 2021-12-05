@@ -43,12 +43,16 @@ def lottery():
         #print(number_extract)
         #number_extract = 10
         plays = db.session.query(Lottery)
+        """url = "http://users_ms_worker:5000/user/updatepoints/%s" % str(1)
+        requests.put(url, json = {'user/updatepoints' : 'increase'},
+                timeout=15)"""
         if plays is None:
             return "no play found"
         for play in plays:
             if play.lottery_number == number_extract:
                 url = "http://users_ms_worker:5000/user/updatepoints/%s" % str(play.id)
-                requests.put(url, timeout=15)
+                requests.put(url, json = {'user/updatepoints' : 'increase'},
+                timeout=15)
                 print("vinto")
             #delete the user's lottery play for the next extraction
             LotteryManager.delete_lottery_play(play)
