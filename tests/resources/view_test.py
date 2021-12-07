@@ -14,32 +14,8 @@ class ViewTest(unittest.TestCase):
         app = create_app()
         cls.client = app.test_client()
 
-        from tests.models.test_user import TestUser
-        cls.test_user = TestUser
+        from tests.models.test_play import TestPlay
+        cls.test_play = TestPlay
 
-        from mib.dao.user_manager import UserManager
-        cls.user_manager = UserManager()
-
-    def login_test_user(self):
-        """
-        Simulate the user login for testing the resources
-        :return: user
-        """
-        user = self.test_user.generate_random_user()
-        psw = user.password
-        user.set_password(user.password)
-
-        self.user_manager.create_user(user=user)
-        data = {
-            'email': user.email,
-            'password': psw,
-        }
-
-        response = self.client.post('/authenticate', json=data)
-        json_response = response.json
-
-        assert response.status_code == 200
-        assert json_response["authentication"] == 'success'
-        assert json_response['user'] is not None
-
-        return user
+        from mib.dao.lottery_manager import LotteryManager
+        cls.lottery_manager = LotteryManager()
