@@ -1,4 +1,5 @@
-# Message in A Bottle - users
+# Message in A Bottle - lottery
+[![Build Status](https://app.travis-ci.com/fedehsq/mib-lottery.svg?token=kAh3Gr4JxFg5Q2ipJRBp&branch=main)](https://app.travis-ci.com/fedehsq/mib-lottery) [![Coverage Status](https://coveralls.io/repos/github/fedehsq/mib-lottery/badge.svg?branch=main&t=0Tnoow)](https://coveralls.io/github/fedehsq/mib-lottery?branch=main)
 
 This is the source code of Message in a Bottle application, self project of *Advanced Software Engineering* course,
 University of Pisa.
